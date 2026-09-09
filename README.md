@@ -78,12 +78,23 @@ https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;7
 
 `docs/app.js`의 브랜드 락업에 인라인 SVG로 들어 있고, 같은 도형이 `docs/index.html`의 favicon(data URI)이다. 잉크 사각형 + 굵기가 다른 결 3줄 + 라임 점. 16px에서도 형태가 유지된다.
 
+## 바탕화면 앱
+
+```sh
+python3 desktop/build_app.py
+```
+
+바탕화면에 `GRAIN.app`을 만든다. 인터넷이 되면 배포판을 열고, 안 되면 앱 안에 든 오프라인 사본(`Resources/offline.html`)을 연다. 오프라인 사본은 `docs/`의 네 파일을 한 장으로 합친 것이라 ES 모듈 import 없이 `file://`에서도 돈다.
+
+아이콘은 앱 로고와 같은 도형을 PIL로 그려 `.icns`로 굽는다(별도 이미지 파일 없음). **`docs/`를 고쳤으면 다시 실행해서 오프라인 사본을 갱신할 것.** Finder가 옛 아이콘을 계속 보여주면 `killall Finder`.
+
 ## 파일
 
 - `docs/data.js`: 문항과 채점, 추가 질문 결정, 임시 응답 점검
 - `docs/app.js`: 화면, 라우팅, 브라우저 저장, 내보내기
 - `docs/style.css`: 반응형 화면
 - `server.mjs`: 로컬 정적 서버
+- `desktop/build_app.py`: 바탕화면 GRAIN.app 생성(아이콘 + 오프라인 사본)
 - `tests/scoring.test.mjs`: 채점·복원·유형 해설 검증 13개
 - `RESEARCH.md`: 비교 근거, 제품 결정, 후속 타당화 계획
 - `QA.md`: 실행한 검사와 확인하지 못한 범위
