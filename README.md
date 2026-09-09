@@ -1,4 +1,6 @@
-# 결 — 나를 알아가는 시간
+# GRAIN — 나의 결을 읽는 시간
+
+> 결(grain)은 나뭇결처럼 사람마다 다른 성향의 무늬를 뜻합니다. 이름은 GRAIN, 읽는 것은 나의 결.
 
 한국어 성격 탐색 웹앱. PC와 모바일 브라우저에서 작동하며 별도 라이브러리나 서버 계정이 필요 없습니다.
 
@@ -33,6 +35,43 @@ https://won2070-commits.github.io/gyeol/ — GitHub Pages(`main` 브랜치 `/doc
 - 확인 대화상자를 거치는 전체 삭제
 - 320px 이상 반응형, 네이티브 라디오 및 키보드 사용, 초점 표시
 - 외부 요청, 분석 추적, 로그인, 외부 AI 사용 없음
+
+## 디자인 시스템
+
+**서체 (Google Fonts, 명시적 로딩)**
+
+```
+https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap
+```
+
+- `Space Grotesk` — 영문·숫자·유형 코드(ISTJ 등)·eyebrow. 700/500/400
+- `IBM Plex Sans KR` — 한글 본문과 제목. 300–700
+- 스택은 `'Space Grotesk','IBM Plex Sans KR',system-ui` 순서. 한글 글리프가 없는 Space Grotesk를 앞에 두어 영문만 자동으로 잡힌다.
+
+**색상 (정확한 hex)**
+
+| 토큰 | 값 | 쓰임 |
+|---|---|---|
+| `--ink` | `#171A12` | 본문 텍스트, 기본 버튼, 로고 바탕 |
+| `--ink-soft` | `#2B3124` | 보조 아이콘·라벨 |
+| `--paper` | `#F3F4EE` | 페이지 바탕 |
+| `--surface` | `#FFFFFF` | 카드·패널 |
+| `--sage` | `#E9EBE0` | 히어로·결과 히어로 면 |
+| `--line` | `#E3E4DA` | 경계선 |
+| `--muted` | `#5B6156` | 보조 텍스트 |
+| `--lime` | `#CBF24B` | 액센트(로고 점, 나이테 중심, 버튼 hover) |
+
+**배경 레이어**
+
+`.bg-field`는 텍스트·버튼이 없는 순수 배경 전용 레이어다. 블러 처리한 색 덩어리 3개가 서로 다른 주기로 움직이고, `animation-direction: alternate`로 왕복해서 이어붙인 자리가 보이지 않는다. 그 위에 SVG `feTurbulence` 노이즈를 얹어 종이 질감(grain)을 준다. `prefers-reduced-motion`이 켜져 있으면 움직임 없이 정지 상태로 보인다. 동영상 파일을 쓰지 않으므로 추가 용량은 0이다.
+
+**추상 원형 패턴**
+
+히어로의 `.rings`는 나이테를 본뜬 동심원 5겹이다. 각 겹을 왼쪽으로 조금씩 밀어 완전한 동심원을 피했고, 중심의 라임 점이 로고 마크와 같은 요소다. 좌우로 천천히 흔들리며 이 역시 왕복 재생이다.
+
+**로고**
+
+`docs/app.js`의 브랜드 락업에 인라인 SVG로 들어 있고, 같은 도형이 `docs/index.html`의 favicon(data URI)이다. 잉크 사각형 + 굵기가 다른 결 3줄 + 라임 점. 16px에서도 형태가 유지된다.
 
 ## 파일
 
