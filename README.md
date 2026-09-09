@@ -20,6 +20,11 @@ http://localhost:5221 에 접속합니다. 종료는 터미널에서 Ctrl+C. 테
 https://won2070-commits.github.io/gyeol/ — GitHub Pages(`main` 브랜치 `/docs`).
 `git push origin main` 하면 1–2분 안에 반영됩니다. 별도 빌드 단계는 없습니다.
 
+**CSS나 JS를 고쳤으면 버전 쿼리를 올릴 것.** GitHub Pages가 정적 자산을 10분 캐시하기 때문에, 올리지 않으면 새 HTML에 옛 CSS/JS가 물려 화면이 깨진 채로 뜬다. 세 곳을 같은 숫자로 맞춘다.
+
+- `docs/index.html` — `style.css?v=N`, `app.js?v=N`
+- `docs/app.js` 첫 줄 — `from './data.js?v=N'`
+
 저장소는 접속 주소별로 분리되므로 localhost, 127.0.0.1, github.io는 서로 다른 기록을 가집니다. 앱스토어 등록과 네이티브 패키지는 하지 않았습니다.
 
 ## 구현한 기능

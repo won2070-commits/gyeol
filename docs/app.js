@@ -1,4 +1,4 @@
-import {axes,questions,extraQuestions,allQuestions,score,followups,quality,typeNames,typeProfiles,VERSION,validDraft} from './data.js';
+import {axes,questions,extraQuestions,allQuestions,score,followups,quality,typeNames,typeProfiles,VERSION,validDraft} from './data.js?v=2';
 const app=document.querySelector('#app');
 const KEY='gyeol:state:v1';
 let storageOK=true, page=0, extraIds=[], currentId=null, demo=false;
