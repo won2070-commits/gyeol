@@ -128,8 +128,20 @@ else
 fi
 """)
     launcher.chmod(0o755)
-    subprocess.run(["touch", str(APP)], check=True)
+    refresh_finder()
     print("만들었습니다:", APP)
+
+
+def refresh_finder():
+    """Finder 는 앱을 한 번 그리면 아이콘을 캐시한다. 다시 빌드했으면 강제로 갱신해야
+    옛 아이콘이 그대로 남지 않는다."""
+    subprocess.run(["touch", str(APP)], check=True)
+    lsregister = ("/System/Library/Frameworks/CoreServices.framework/Frameworks"
+                  "/LaunchServices.framework/Support/lsregister")
+    if Path(lsregister).exists():
+        subprocess.run([lsregister, "-f", str(APP)], timeout=60, check=False)
+    subprocess.run(["killall", "Finder"], check=False,
+                   stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 if __name__ == "__main__":
