@@ -13,7 +13,12 @@ npm start
 
 http://localhost:5221 에 접속합니다. 종료는 터미널에서 Ctrl+C. 테스트는 `npm test`.
 
-외부 호스팅에서는 `docs/` 폴더를 정적 배포하면 됩니다. 현재는 로컬 실행 버전이며 인터넷 공개 배포나 앱스토어 등록은 하지 않았습니다. 저장소는 접속 주소별로 분리되므로 localhost와 127.0.0.1은 다른 기록을 가집니다.
+## 배포
+
+https://won2070-commits.github.io/gyeol/ — GitHub Pages(`main` 브랜치 `/docs`).
+`git push origin main` 하면 1–2분 안에 반영됩니다. 별도 빌드 단계는 없습니다.
+
+저장소는 접속 주소별로 분리되므로 localhost, 127.0.0.1, github.io는 서로 다른 기록을 가집니다. 앱스토어 등록과 네이티브 패키지는 하지 않았습니다.
 
 ## 구현한 기능
 
